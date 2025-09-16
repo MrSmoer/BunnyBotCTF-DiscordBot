@@ -36,6 +36,7 @@ client = commands.Bot(command_prefix=PREFIX, intents=intents)
 async def on_ready():
     await client.change_presence(activity=Game(name="a CTF!"))
     print(f"Logged in as {client.user.name} ({client.user.id})")
+    await client.sync_commands()
     
     if SEND_HELLO_MSG and HELLO_CHANNEL != '':
         for guild in client.guilds:
@@ -76,3 +77,5 @@ for extension in [f"{COGS_DIR}.{x[:-len('.py')]}" for x in os.listdir(COGS_DIR) 
         print('Failed to load extension \"{}\"\n{}'.format(extension, exc))
 
 client.run(TOKEN)
+
+
